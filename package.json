@@ -16,5 +16,8 @@
   "bugs": {
     "url": "https://github.com/neutrixs/grecaptcha-loader/issues"
   },
-  "homepage": "https://github.com/neutrixs/grecaptcha-loader#readme"
+  "homepage": "https://github.com/neutrixs/grecaptcha-loader#readme",
+  "devDependencies": {
+    "@types/grecaptcha": "^3.0.4"
+  }
 }

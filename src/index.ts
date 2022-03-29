@@ -16,12 +16,19 @@ const load: loadFunction = async function () {
         optionParam.append(key, value)
     })
 
-    const scriptElement = document.createElement('script')
-    scriptElement.src = baseAPIURL + '?' + optionParam.toString()
-    scriptElement.async = true
-    document.head.appendChild(scriptElement)
+    const existing = document.querySelector('#recaptcha_script_element') as HTMLScriptElement | null
 
-    await waitScriptLoad(scriptElement)
+    if (!existing) {
+        const scriptElement = document.createElement('script')
+        scriptElement.src = baseAPIURL + '?' + optionParam.toString()
+        scriptElement.async = true
+        scriptElement.id = 'recaptcha_script_element'
+        document.head.appendChild(scriptElement)
+
+        await waitScriptLoad(scriptElement)
+    } else {
+        await waitScriptLoad(existing)
+    }
 
     return waitGrecaptcha()
 }
@@ -44,5 +51,7 @@ const waitGrecaptcha: waitGrecaptchaFunction = function () {
         })
     })
 }
+
+;(window as any).KONTOL = { load, setOptions }
 
 export { load, setOptions }

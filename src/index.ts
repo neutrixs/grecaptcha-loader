@@ -6,7 +6,7 @@ const setOptions: setOptionsFunction = function (optionsToSet) {
 }
 
 const load: loadFunction = async function () {
-    if (grecaptcha) {
+    if (window.grecaptcha) {
         return waitGrecaptcha()
     }
 

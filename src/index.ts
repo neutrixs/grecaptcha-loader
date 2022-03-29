@@ -1,17 +1,20 @@
 const baseAPIURL = 'https://www.google.com/recaptcha/api.js'
+let options: reCAPTCHAAPIParam = {}
 
-const load: loadFunction = async function (options) {
+const setOptions: setOptionsFunction = function (optionsToSet) {
+    options = optionsToSet
+}
+
+const load: loadFunction = async function () {
     if (grecaptcha) {
         return waitGrecaptcha()
     }
 
     const optionParam = new URLSearchParams()
 
-    if (options) {
-        Object.entries(options).forEach(([key, value]) => {
-            optionParam.append(key, value)
-        })
-    }
+    Object.entries(options).forEach(([key, value]) => {
+        optionParam.append(key, value)
+    })
 
     const scriptElement = document.createElement('script')
     scriptElement.src = baseAPIURL + '?' + optionParam.toString()
@@ -42,4 +45,4 @@ const waitGrecaptcha: waitGrecaptchaFunction = function () {
     })
 }
 
-export default load
+export { load, setOptions }

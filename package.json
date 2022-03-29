@@ -1,0 +1,19 @@
+{
+  "name": "grecaptcha-loader",
+  "version": "0.1.0",
+  "description": "",
+  "module": "./dist/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/neutrixs/grecaptcha-loader.git"
+  },
+  "author": "neutrixs",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/neutrixs/grecaptcha-loader/issues"
+  },
+  "homepage": "https://github.com/neutrixs/grecaptcha-loader#readme"
+}

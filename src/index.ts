@@ -1,11 +1,18 @@
 const baseAPIURL = 'https://www.google.com/recaptcha/api.js'
+
+interface reCAPTCHAAPIParam {
+    onload?: string
+    render?: 'explicit' | 'onload' | string
+    hl?: string
+}
+
 let options: reCAPTCHAAPIParam = {}
 
-const setOptions: setOptionsFunction = function (optionsToSet) {
+function setOptions(optionsToSet: reCAPTCHAAPIParam) {
     options = optionsToSet
 }
 
-const load: loadFunction = async function () {
+async function load(): Promise<void> {
     if (window.grecaptcha) {
         return waitGrecaptcha()
     }
@@ -33,7 +40,7 @@ const load: loadFunction = async function () {
     return waitGrecaptcha()
 }
 
-const waitScriptLoad: waitScriptLoadFunction = function (element) {
+function waitScriptLoad(element: HTMLScriptElement): Promise<void> {
     return new Promise((resolve, reject) => {
         element.addEventListener('load', () => {
             resolve()
@@ -44,7 +51,7 @@ const waitScriptLoad: waitScriptLoadFunction = function (element) {
     })
 }
 
-const waitGrecaptcha: waitGrecaptchaFunction = function () {
+function waitGrecaptcha() {
     return new Promise<void>(resolve => {
         grecaptcha.ready(() => {
             resolve()

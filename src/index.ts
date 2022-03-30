@@ -16,13 +16,17 @@ function setOptions(optionsToSet: reCAPTCHAAPIParam) {
     options = optionsToSet
 }
 
-async function partialLoad(): Promise<void> {
-    const param = new URLSearchParams()
+function getParams() {
+    const params = new URLSearchParams()
     Object.entries(options).forEach(([key, value]) => {
-        param.append(key, value)
+        params.append(key, value)
     })
 
-    return appendScriptTag(baseAPIURL, param)
+    return params
+}
+
+async function partialLoad() {
+    return appendScriptTag(baseAPIURL, getParams())
 }
 
 async function load(): Promise<void> {

@@ -1,3 +1,5 @@
+import waitGrecaptcha from './scripts/waitGrecaptcha'
+
 const baseAPIURL = 'https://www.google.com/recaptcha/api.js'
 
 interface reCAPTCHAAPIParam {
@@ -47,14 +49,6 @@ function waitScriptLoad(element: HTMLScriptElement): Promise<void> {
         })
         element.addEventListener('error', () => {
             reject('Script failed to load')
-        })
-    })
-}
-
-function waitGrecaptcha() {
-    return new Promise<void>(resolve => {
-        grecaptcha.ready(() => {
-            resolve()
         })
     })
 }

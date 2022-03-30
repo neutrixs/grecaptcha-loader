@@ -1,6 +1,6 @@
 {
   "name": "grecaptcha-loader",
-  "version": "0.1.2",
+  "version": "0.2.0",
   "description": "",
   "module": "./dist/index.js",
   "type": "module",

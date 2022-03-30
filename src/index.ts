@@ -29,6 +29,14 @@ async function partialLoad() {
     return appendScriptTag(baseAPIURL, getParams())
 }
 
+async function fullLoad() {
+    await appendScriptTag(baseAPIURL, getParams())
+    return waitGrecaptcha()
+}
+
+/**
+ * @deprecated use partialLoad or fullLoad instead
+ */
 async function load(): Promise<void> {
     if (window.grecaptcha) {
         return waitGrecaptcha()
@@ -57,4 +65,4 @@ async function load(): Promise<void> {
     return waitGrecaptcha()
 }
 
-export { load, setOptions }
+export { load, partialLoad, fullLoad, setOptions }

@@ -1,5 +1,6 @@
 import waitGrecaptcha from './scripts/waitGrecaptcha'
 import waitScriptLoad from './scripts/waitScriptLoad'
+import appendScriptTag from './scripts/appendScriptTag'
 
 const baseAPIURL = 'https://www.google.com/recaptcha/api.js'
 
@@ -13,6 +14,15 @@ let options: reCAPTCHAAPIParam = {}
 
 function setOptions(optionsToSet: reCAPTCHAAPIParam) {
     options = optionsToSet
+}
+
+async function partialLoad(): Promise<void> {
+    const param = new URLSearchParams()
+    Object.entries(options).forEach(([key, value]) => {
+        param.append(key, value)
+    })
+
+    return appendScriptTag(baseAPIURL, param)
 }
 
 async function load(): Promise<void> {

@@ -25,9 +25,17 @@ function getParams() {
     return params
 }
 
+/**
+ * Will resolve once recaptcha is partially loaded (window.grecaptcha becomes available)
+ */
+
 async function partialLoad() {
     return appendScriptTag(baseAPIURL, getParams())
 }
+
+/**
+ * Will resolve once recaptcha is fully loaded (grecaptcha.render, grecaptcha.execute, etc, becomes available)
+ */
 
 async function fullLoad() {
     await appendScriptTag(baseAPIURL, getParams())

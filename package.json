@@ -3,7 +3,6 @@
   "version": "0.2.0",
   "description": "",
   "module": "./dist/index.js",
-  "type": "module",
   "types": "./dist/index.d.ts",
   "scripts": {
     "build": "rm -r ./dist/* && tsc"

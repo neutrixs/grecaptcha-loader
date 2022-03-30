@@ -1,4 +1,5 @@
 import waitGrecaptcha from './scripts/waitGrecaptcha'
+import waitScriptLoad from './scripts/waitScriptLoad'
 
 const baseAPIURL = 'https://www.google.com/recaptcha/api.js'
 
@@ -40,17 +41,6 @@ async function load(): Promise<void> {
     }
 
     return waitGrecaptcha()
-}
-
-function waitScriptLoad(element: HTMLScriptElement): Promise<void> {
-    return new Promise((resolve, reject) => {
-        element.addEventListener('load', () => {
-            resolve()
-        })
-        element.addEventListener('error', () => {
-            reject('Script failed to load')
-        })
-    })
 }
 
 export { load, setOptions }
